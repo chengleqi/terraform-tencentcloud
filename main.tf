@@ -2,6 +2,7 @@ terraform {
   required_providers {
     tencentcloud = {
       source = "tencentcloudstack/tencentcloud"
+      version = "1.71.0"
     }
   }
 }
@@ -38,4 +39,9 @@ resource "tencentcloud_instance" "hk-server" {
   allocate_public_ip = true
 
   key_name = "skey-frss4f15"
+}
+
+output "instance_ip_addr" {
+  value = tencentcloud_instance.hk-server.0.public_ip
+  description = "The public IP address of the hk-server"
 }
